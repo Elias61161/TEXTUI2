@@ -1,0 +1,536 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+:root {
+    --inside-background: radial-gradient(50% 50% at 50% 50%, #006299 0%, #00a3ff 100%);
+    --inside-box-shadow: 0px 0px 22px 0px rgba(0, 163, 255, 0.8);
+    --inside-border: 4px solid #0190e1;
+    --background-animate-color: rgba(0, 163, 255, 1);
+    --c2: transparent;
+    --d: 5000ms;
+    --angle: 90deg;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("fonts/Poppins-Regular.ttf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("fonts/Poppins-Bold.ttf");
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    background: transparent;
+    overflow: hidden;
+    user-select: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =====================================================
+   KEYFRAMES - Border rotation
+   ===================================================== */
+
+@keyframes borderRotate {
+    100% { --angle: 450deg; }
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 90deg;
+    inherits: true;
+}
+
+/* =====================================================
+   KEYFRAMES - Lunar Bridge Style Animations
+   ===================================================== */
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes markerToText {
+    0% { transform: translate(-50%, -50%) rotate(45deg) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) rotate(0deg) scale(0); opacity: 0; }
+}
+
+@keyframes textFromMarker {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes textToMarker {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+}
+
+@keyframes markerFromText {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(0); opacity: 0; }
+    100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); opacity: 1; }
+}
+
+@keyframes bounceUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+}
+
+/* =====================================================
+   SCROLL ANIMATIONS - Lunar Bridge Style
+   ===================================================== */
+
+/* Selected item animation */
+@keyframes selectSlideIn {
+    0% {
+        opacity: 0.4;
+        transform: translateX(0) scale(0.94);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(10px) scale(1);
+    }
+}
+
+/* Deselected item animation */
+@keyframes deselectSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateX(10px) scale(1);
+    }
+    100% {
+        opacity: 0.4;
+        transform: translateX(0) scale(0.94);
+    }
+}
+
+/* =====================================================
+   SIMPLE 2D TEXT UI
+   ===================================================== */
+
+.simple-textui {
+    position: fixed;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    z-index: 1000;
+    animation: fadeSlideIn 0.3s ease;
+}
+
+.simple-textui .key-box {
+    width: fit-content;
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.simple-textui .key-box::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 10px;
+    z-index: -1;
+    background: conic-gradient(from var(--angle), var(--c2), var(--background-animate-color) 0.1turn, var(--background-animate-color) 0.15turn, var(--c2) 0.25turn);
+    animation: borderRotate var(--d) linear infinite forwards;
+    margin: 4px;
+}
+
+.simple-textui .key-inner {
+    position: relative;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 700;
+    height: 40px;
+    min-width: 40px;
+    box-shadow: var(--inside-box-shadow);
+    background: var(--inside-background);
+    border-radius: 9px;
+    border: var(--inside-border);
+}
+
+.simple-textui .text-box {
+    width: fit-content;
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.simple-textui .text-box::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 10px;
+    z-index: -1;
+    background: conic-gradient(from var(--angle), var(--c2), var(--background-animate-color) 0.1turn, var(--background-animate-color) 0.15turn, var(--c2) 0.25turn);
+    animation: borderRotate var(--d) linear infinite forwards;
+    margin: 4px;
+}
+
+.simple-textui .text-inner {
+    position: relative;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 700;
+    height: 40px;
+    min-width: 160px;
+    box-shadow: var(--inside-box-shadow);
+    background: var(--inside-background);
+    border-radius: 9px;
+    border: var(--inside-border);
+}
+
+/* =====================================================
+   3D MARKER
+   ===================================================== */
+
+.marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 999;
+}
+
+.marker.animate-out {
+    animation: markerToText 0.3s ease forwards;
+}
+
+.marker.animate-in {
+    animation: markerFromText 0.3s ease forwards;
+}
+
+.ThreeDCircle {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    transform: rotate(45deg);
+    border-radius: 8px;
+}
+
+.ThreeDCircle::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 8px;
+    z-index: -1;
+    background: conic-gradient(from var(--angle), var(--c2), var(--background-animate-color) 0.1turn, var(--background-animate-color) 0.15turn, var(--c2) 0.25turn);
+    animation: borderRotate var(--d) linear infinite forwards;
+    padding: 4px;
+}
+
+.ThreeDCircleMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    box-shadow: var(--inside-box-shadow);
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    background: var(--inside-background);
+    border: var(--inside-border);
+    border-radius: 8px;
+}
+
+/* =====================================================
+   OPTIONS MENU
+   ===================================================== */
+
+.options-menu {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    pointer-events: auto;
+    z-index: 1000;
+}
+
+.options-menu.animate-in {
+    animation: textFromMarker 0.3s ease forwards;
+}
+
+.options-menu.animate-out {
+    animation: textToMarker 0.25s ease forwards;
+}
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+/* =====================================================
+   SCROLL INDICATOR
+   ===================================================== */
+
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 6px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    border: 2px solid rgba(0, 163, 255, 0.3);
+}
+
+.scroll-indicator .arrow {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 10px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.scroll-indicator .arrow:hover {
+    color: var(--background-animate-color);
+    transform: scale(1.3);
+}
+
+.scroll-indicator .arrow.up {
+    animation: bounceUp 1.5s ease infinite;
+}
+
+.scroll-indicator .arrow.down {
+    animation: bounceDown 1.5s ease infinite;
+}
+
+/* Disabled arrows */
+.scroll-indicator .arrow.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    animation: none;
+}
+
+.scroll-indicator .arrow.disabled:hover {
+    color: rgba(255, 255, 255, 0.4);
+    transform: none;
+}
+
+.scroll-dots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.scroll-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+}
+
+.scroll-dot:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.2);
+}
+
+.scroll-dot.active {
+    background: var(--background-animate-color);
+    box-shadow: 0 0 12px var(--background-animate-color);
+    transform: scale(1.5);
+}
+
+/* =====================================================
+   OPTION ROW - Lunar Bridge Style
+   ===================================================== */
+
+.option-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: left center;
+}
+
+/* Selected state - Lunar Bridge style */
+.option-row.selected {
+    opacity: 1;
+    transform: translateX(10px) scale(1);
+    z-index: 10;
+}
+
+/* Dimmed state */
+.option-row.dimmed {
+    opacity: 0.4;
+    transform: translateX(0) scale(0.94);
+}
+
+/* Hover on dimmed */
+.option-row.dimmed:hover {
+    opacity: 0.6;
+}
+
+/* Animation classes */
+.option-row.selecting {
+    animation: selectSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.option-row.deselecting {
+    animation: deselectSlideOut 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* =====================================================
+   KEY BOX
+   ===================================================== */
+
+.option-row .key-box {
+    width: 55px;
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.option-row .key-box::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 10px;
+    z-index: -1;
+    background: conic-gradient(from var(--angle), var(--c2), var(--background-animate-color) 0.1turn, var(--background-animate-color) 0.15turn, var(--c2) 0.25turn);
+    margin: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.option-row.selected .key-box::before {
+    opacity: 1;
+    animation: borderRotate var(--d) linear infinite forwards;
+}
+
+.option-row .key-inner {
+    position: relative;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.5vw;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 700;
+    height: 40px;
+    min-width: 40px;
+    box-shadow: var(--inside-box-shadow);
+    background: var(--inside-background);
+    border-radius: 9px;
+    border: var(--inside-border);
+    transition: box-shadow 0.3s ease;
+}
+
+.option-row.selected .key-inner {
+    box-shadow: var(--inside-box-shadow), 0 0 20px rgba(0, 163, 255, 0.4);
+}
+
+/* =====================================================
+   TEXT BOX
+   ===================================================== */
+
+.option-row .text-box {
+    height: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.option-row .text-box::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 10px;
+    z-index: -1;
+    background: conic-gradient(from var(--angle), var(--c2), var(--background-animate-color) 0.1turn, var(--background-animate-color) 0.15turn, var(--c2) 0.25turn);
+    margin: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.option-row.selected .text-box::before {
+    opacity: 1;
+    animation: borderRotate var(--d) linear infinite forwards;
+}
+
+.option-row .text-inner {
+    position: relative;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 0.8vw;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 700;
+    height: 40px;
+    min-width: 160px;
+    background: var(--inside-background);
+    border-radius: 9px;
+    box-shadow: var(--inside-box-shadow);
+    border: var(--inside-border);
+    transition: box-shadow 0.3s ease;
+    white-space: nowrap;
+}
+
+.option-row.selected .text-inner {
+    box-shadow: var(--inside-box-shadow), 0 0 20px rgba(0, 163, 255, 0.4);
+}
+
+.option-row .text-inner .icon {
+    font-size: 18px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QS-TextUI</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+    <!-- Simple 2D TextUI -->
+    <div id="simpleTextUI" class="simple-textui hidden">
+        <div class="key-box">
+            <div class="key-inner" id="simpleKey">E</div>
+        </div>
+        <div class="text-box">
+            <div class="text-inner" id="simpleText">Interact</div>
+        </div>
+    </div>
+    
+    <!-- 3D Marker (snea fyrkanten) -->
+    <div id="marker" class="marker hidden">
+        <div class="ThreeDCircle">
+            <div class="ThreeDCircleMain"></div>
+        </div>
+    </div>
+    
+    <!-- Options Menu -->
+    <div id="optionsMenu" class="options-menu hidden">
+        <!-- Options list -->
+        <div id="optionsList" class="options-list"></div>
+        
+        <!-- Scroll indicator (på sidan) -->
+        <div id="scrollIndicator" class="scroll-indicator hidden">
+            <span class="arrow up">▲</span>
+            <div class="scroll-dots" id="scrollDots"></div>
+            <span class="arrow down">▼</span>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
